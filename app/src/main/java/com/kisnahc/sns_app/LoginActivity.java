@@ -1,5 +1,6 @@
 package com.kisnahc.sns_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -7,8 +8,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
@@ -31,6 +39,16 @@ public class LoginActivity extends AppCompatActivity {
 
     OAuthLogin oAuthLogin;
     OAuthLoginButton oAuthLoginButton;
+
+
+    //firebase sign in
+
+    EditText email_signin;
+    EditText pwd_signin;
+    private  FirebaseAuth firebaseAuth;
+
+
+
 
 
     @Override
@@ -110,8 +128,41 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //sign in
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        email_signin = findViewById(R.id.et_email);
+        pwd_signin = findViewById(R.id.et_password);
 
+        findViewById(R.id.btn_signin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mEmail = email_signin.getText().toString().trim();
+                String mPwd = pwd_signin.getText().toString().trim();
+
+                firebaseAuth.signInWithEmailAndPassword(mEmail, mPwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "onComplete: success");
+                            Toast.makeText(LoginActivity.this, "로그인 되었습니다.",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "이메일 또는 비밀번호를 확인해 주세요.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        findViewById(R.id.btn_signup).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

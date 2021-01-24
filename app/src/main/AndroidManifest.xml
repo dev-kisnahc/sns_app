@@ -12,8 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sns_app">
-
-
+        <activity android:name=".SignupActivity"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,16 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".LoginActivity">
-        </activity>
-
-
-        <activity android:name=".MainActivity">
-        </activity>
-
-
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -44,8 +35,6 @@
                     android:scheme="kakaoe39c6cbb12c3993c36f661c183f34fd7" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>
