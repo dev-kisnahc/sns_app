@@ -18,8 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
@@ -74,9 +72,7 @@ public class SignupActivity extends AppCompatActivity {
                                         hashMap.put("email",Email);
                                         hashMap.put("name",Name);
 
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference reference = database.getReference("Users");
-                                        reference.child(Uid).setValue(hashMap);
+
 
                                         Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                                         startActivity(intent);

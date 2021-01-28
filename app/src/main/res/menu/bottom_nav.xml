@@ -5,21 +5,24 @@
     <item
         android:id="@+id/nav_1"
         android:icon="@drawable/icons8_home_24"
-        tools:ignore="MenuTitle" />
+        android:title="Home"
+        android:titleCondensed="Home"
+        />
 
     <item
         android:id="@+id/nav_2"
         android:icon="@drawable/ic_baseline_chat_bubble_outline_24"
-        tools:ignore="MenuTitle" />
+        android:title="Chat"
+        />
 
     <item
         android:id="@+id/nav_3"
         android:icon="@drawable/ic_baseline_search_24"
-        tools:ignore="MenuTitle" />
+        android:title="Search" />
 
     <item
         android:id="@+id/nav_4"
         android:icon="@drawable/ic_baseline_perm_identity_24"
-        tools:ignore="MenuTitle" />
+        android:title="User" />
 
 </menu>
